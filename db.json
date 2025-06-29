@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Hello World Post",
+      "content": "This is my first blog post content.",
+      "author": "Beryl",
+      "image": "https://www.nbc.com/sites/nbcblog/files/styles/scale_862/public/2024/07/paris-2024-olympics-soccer.jpg"
+    },
+    {
+      "title": "Luna",
+      "content": "My beautiful cat",
+      "author": "Mbeks",
+      "image": "",
+      "id": 3
+    },
+    {
+      "title": "Salex",
+      "content": "nyeuuu",
+      "author": "Mbeks",
+      "image": "",
+      "id": 4
+    }
+  ]
+}
