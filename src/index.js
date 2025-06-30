@@ -5,7 +5,7 @@ function displayPosts() {
     .then(response => response.json())
     .then(posts => {
       const postsUl = document.getElementById("posts-ul");
-      postsUl.innerHTML = ""; // clear old list
+      postsUl.innerHTML = ""; 
 
       posts.forEach(post => {
   const li = document.createElement("li");
@@ -39,13 +39,13 @@ function main() {
   displayPosts();
   addNewPostListener();
   addEditPostListener();
-  // later: addNewPostListener();
+  
 }
 function handlePostClick(postId) {
   fetch(`${BASE_URL}/posts/${postId}`)
     .then(response => response.json())
     .then(post => {
-      // Update the detail section
+      
       document.getElementById("detail-title").textContent = post.title;
       document.getElementById("detail-content").textContent = post.content;
       document.getElementById("detail-author").textContent = post.author;
@@ -58,10 +58,10 @@ function handlePostClick(postId) {
         detailImage.style.display = "none";
       }
 
-      // Set current post id for edit / delete
+      
       document.getElementById("post-detail").dataset.currentPostId = post.id;
 
-      // Edit button
+     
       const editBtn = document.getElementById("edit-btn");
       editBtn.style.display = "inline-block";
       editBtn.onclick = () => {
@@ -71,7 +71,7 @@ function handlePostClick(postId) {
         editForm["content"].value = post.content;
       };
 
-      // Delete button
+  
       const deleteBtn = document.getElementById("delete-btn");
       deleteBtn.style.display = "inline-block";
       deleteBtn.onclick = () => {
@@ -94,7 +94,7 @@ function addNewPostListener() {
       image: form.image.value
     };
 
-    // POST to server
+   
     fetch(`${BASE_URL}/posts`, {
       method: "POST",
       headers: {
@@ -105,12 +105,12 @@ function addNewPostListener() {
     })
       .then(response => response.json())
       .then(postFromServer => {
-        // Now it has an ID from the server, so add click handler
+        
         addPostToList(postFromServer);
       })
       .catch(error => console.error("Error adding new post:", error));
 
-    // Clear the form
+   
     form.reset();
   });
 }
@@ -163,20 +163,20 @@ function addEditPostListener() {
     })
       .then(response => response.json())
       .then(updated => {
-        // Update the detail view
+        
         document.getElementById("detail-title").textContent = updated.title;
         document.getElementById("detail-content").textContent = updated.content;
 
-        // Rerun displayPosts to update list
+       
         displayPosts();
 
-        // Hide the edit form
+       
         editForm.classList.add("hidden");
       })
       .catch(error => console.error("Error updating post:", error));
   });
 
-  // Handle cancel
+ 
   cancelBtn.addEventListener("click", () => {
     editForm.classList.add("hidden");
   });
@@ -187,9 +187,9 @@ function deletePost(postId) {
     method: "DELETE"
   })
     .then(() => {
-      // Refresh the list
+      
       displayPosts();
-      // Clear the details view
+      
       clearPostDetail();
     })
     .catch(error => console.error("Error deleting post:", error));
